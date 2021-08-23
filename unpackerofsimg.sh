@@ -26,12 +26,12 @@ do
     test1 && rm tmp/${i}.new.dat.br
     
     echo -e "\033[33m 解压${i}.new.dat \033[0m"
-    sdat2img.py tmp/${i}.transfer.list tmp/${i}.new.dat out/${i}.img
+    sdat2img.py tmp/${i}.transfer.list tmp/${i}.new.dat tmp/${i}.img
     test1 && rm tmp/${i}.transfer.list tmp/${i}.new.dat
 
     echo -e "\033[33m 解压${i}.img \033[0m"
-    imgextractor.py out/${i}.img tmp/${!}
-    test1 && rm out/${i}.img
+    erofsunpack tmp/${i}.img tmp
+    test1 && rm tmp/${i}.img
 done
 }
 
