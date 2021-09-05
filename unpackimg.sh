@@ -34,9 +34,17 @@ do
         sdat2img.py tmp/${i}.transfer.list tmp/${i}.new.dat tmp/${i}.img
         test1 && rm tmp/${i}.transfer.list tmp/${i}.new.dat
     fi
-    echo -e "\033[33m 解压${i}.img \033[0m"
-    erofsunpack tmp/${i}.img tmp
-    test1 && rm tmp/${i}.img
+
+    filetype=`file tmp/system.img | grep -o "data"`
+    if [ ${filetype} == data ];then
+        echo -e "\033[33m 解压${i}.img \033[0m"
+        erofsunpack tmp/${i}.img tmp
+        test1 && rm tmp/${i}.img
+    else
+        echo -e "\033[33m 解压${i}.img \033[0m"
+        imgextractor.py tmp/${i}.img tmp/${!}
+        test1 && rm tmp/${i}.img
+    fi
 done
 }
 
